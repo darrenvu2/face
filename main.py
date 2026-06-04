@@ -2,6 +2,7 @@ import cv2
 from camera import get_frame, release_camera
 from insight import detect_faces
 from selector import load_faces
+from swapper import simple_swap
 
 source_faces = load_faces()
 face_names = list(source_faces.keys())
