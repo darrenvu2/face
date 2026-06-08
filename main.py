@@ -16,15 +16,15 @@ while True:
 
     detected_faces = detect_faces(frame)
 
-    for face in detected_faces:
-        x1, y1, x2, y2 = face.bbox.astype(int)
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-
-    if face_names:
+    if detected_faces and face_names:
         selected_name = face_names[selected_index]
+        selected_face_img = source_faces[selected_name]
+
+        frame = simple_swap(frame, selected_face_img, detected_faces[0])
+
         cv2.putText(
             frame,
-            f"Selected: {selected_name}",
+            f"Swapping with: {selected_name}",
             (20, 40),
             cv2.FONT_HERSHEY_SIMPLEX,
             1,
